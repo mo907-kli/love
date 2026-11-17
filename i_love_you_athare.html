@@ -1,0 +1,588 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+  <title>i love you Athare 🎀</title>
+
+  <!-- خطوط خفيفة وسريعة التحميل -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@600;700;800&family=Quicksand:wght@600;700&display=swap" rel="stylesheet" />
+
+  <!-- Tailwind CSS -->
+  <script src="https://cdn.tailwindcss.com"></script>
+
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            bgPink: '#FFF6F8',
+            cardLatte: '#F5EBE6',
+            borderPink: '#F4B8C8',
+            softPink: '#FF9EB5',
+            deepPink: '#E56B8C',
+            warmBrown: '#5D4037',
+            lightBrown: '#8D6E63',
+          },
+          fontFamily: {
+            arabic: ['Cairo', 'sans-serif'],
+            cuteEn: ['Quicksand', 'sans-serif'],
+          },
+        },
+      },
+    };
+  </script>
+
+  <style>
+    * {
+      box-sizing: border-box;
+      -webkit-tap-highlight-color: transparent;
+      user-select: none;
+    }
+
+    body {
+      background-color: #FFF6F8;
+      background-image: radial-gradient(#F4B8C8 1px, transparent 1px);
+      background-size: 26px 26px;
+      color: #5D4037;
+      font-family: 'Cairo', sans-serif;
+      margin: 0;
+      padding: 0;
+      min-height: 100dvh;
+      overflow-x: hidden;
+    }
+
+    /* بطاقة خفيفة جداً بدون blur ثقيل على المعالج */
+    .cute-box {
+      background: #FFFDFD;
+      border: 2.5px solid #F4B8C8;
+      box-shadow: 0 10px 24px rgba(93, 64, 55, 0.08);
+    }
+
+    .latte-inner {
+      background: #F5EBE6;
+      border: 1.5px solid #E4CFC4;
+    }
+
+    .pink-btn {
+      background: linear-gradient(135deg, #FF9EB5 0%, #E56B8C 100%);
+      box-shadow: 0 6px 15px rgba(229, 107, 140, 0.28);
+      transition: transform 0.18s ease;
+      will-change: transform;
+    }
+
+    .pink-btn:active {
+      transform: scale(0.95);
+    }
+
+    /* حركات GPU خفيفة جداً (transform فقط) */
+    @keyframes gentleBob {
+      0%, 100% { transform: translate3d(0, 0, 0); }
+      50% { transform: translate3d(0, -6px, 0); }
+    }
+
+    @keyframes popScale {
+      0% { opacity: 0; transform: scale(0.88); }
+      100% { opacity: 1; transform: scale(1); }
+    }
+
+    @keyframes spinDisc {
+      from { transform: rotate(0deg); }
+      to { transform: rotate(360deg); }
+    }
+
+    .bob-anim {
+      animation: gentleBob 3.2s ease-in-out infinite;
+      will-change: transform;
+    }
+
+    .pop-anim {
+      animation: popScale 0.4s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+    }
+
+    .disc-spin {
+      animation: spinDisc 7s linear infinite;
+      will-change: transform;
+    }
+
+    .disc-paused {
+      animation-play-state: paused;
+    }
+
+    /* حلقة تقدم البصمة */
+    .ring-progress {
+      transition: stroke-dashoffset 0.06s linear;
+      transform: rotate(-90deg);
+      transform-origin: 50% 50%;
+    }
+
+    /* قلوب متساقطة خفيفة */
+    .mini-heart {
+      position: fixed;
+      top: -30px;
+      pointer-events: none;
+      z-index: 999;
+      animation: dropHeart linear forwards;
+      will-change: transform, opacity;
+    }
+
+    @keyframes dropHeart {
+      to {
+        transform: translate3d(0, 105dvh, 0);
+        opacity: 0;
+      }
+    }
+  </style>
+</head>
+<body class="flex flex-col justify-between min-h-[100dvh]">
+
+  <!-- مشغل الصوت المحلي (ملف MP3) -->
+  <audio id="song-audio" loop preload="auto">
+    <source src="Ghostly Kisses - The City Holds My Heart.mp3" type="audio/mpeg">
+  </audio>
+
+  <!-- ===================================================================== -->
+  <!-- 1. شاشة البصمة التفاعلية (سريعة وخفيفة جداً)                          -->
+  <!-- ===================================================================== -->
+  <section id="screen-fingerprint" class="fixed inset-0 z-50 flex items-center justify-center p-4 bg-[#FFF6F8]">
+    <div class="cute-box rounded-[2rem] max-w-sm w-full p-6 sm:p-7 text-center">
+      
+      <div class="inline-block px-3.5 py-1 rounded-full latte-inner text-xs font-bold text-warmBrown mb-3">
+        🎀 خاص لـ Athare 🤎
+      </div>
+
+      <!-- رسمة هيلو كيتي + بنوتة أنمي كيوت خفيفة -->
+      <div class="flex items-center justify-center gap-3 mb-3 bob-anim">
+        <!-- هيلو كيتي -->
+        <svg class="w-24 h-20" viewBox="0 0 180 150">
+          <path d="M40 58 L30 20 L66 40 Z" fill="#FFF" stroke="#5D4037" stroke-width="4" stroke-linejoin="round"/>
+          <path d="M140 58 L150 20 L114 40 Z" fill="#FFF" stroke="#5D4037" stroke-width="4" stroke-linejoin="round"/>
+          <ellipse cx="90" cy="84" rx="60" ry="45" fill="#FFF" stroke="#5D4037" stroke-width="4"/>
+          <g transform="translate(120, 33) rotate(18)">
+            <ellipse cx="-14" cy="0" rx="13" ry="10" fill="#FF9EB5" stroke="#5D4037" stroke-width="3.5"/>
+            <ellipse cx="14" cy="0" rx="13" ry="10" fill="#FF9EB5" stroke="#5D4037" stroke-width="3.5"/>
+            <circle cx="0" cy="0" r="7" fill="#FFD1DC" stroke="#5D4037" stroke-width="3"/>
+          </g>
+          <ellipse cx="66" cy="85" rx="5" ry="6.5" fill="#5D4037"/>
+          <ellipse cx="114" cy="85" rx="5" ry="6.5" fill="#5D4037"/>
+          <ellipse cx="90" cy="95" rx="6" ry="4" fill="#F6BD60" stroke="#5D4037" stroke-width="2.5"/>
+          <ellipse cx="52" cy="97" rx="8" ry="4.5" fill="#FFB3C6"/>
+          <ellipse cx="128" cy="97" rx="8" ry="4.5" fill="#FFB3C6"/>
+          <line x1="20" y1="78" x2="38" y2="82" stroke="#5D4037" stroke-width="3.5" stroke-linecap="round"/>
+          <line x1="18" y1="92" x2="37" y2="92" stroke="#5D4037" stroke-width="3.5" stroke-linecap="round"/>
+          <line x1="160" y1="78" x2="142" y2="82" stroke="#5D4037" stroke-width="3.5" stroke-linecap="round"/>
+          <line x1="162" y1="92" x2="143" y2="92" stroke="#5D4037" stroke-width="3.5" stroke-linecap="round"/>
+        </svg>
+
+        <!-- بنوتة أنمي كيوت صغيرة -->
+        <svg class="w-20 h-20" viewBox="0 0 150 150">
+          <path d="M35 78 C28 120, 38 138, 52 142 L98 142 C112 138, 122 120, 115 78 Z" fill="#8D6E63" stroke="#5D4037" stroke-width="3.5"/>
+          <circle cx="75" cy="76" r="36" fill="#FFE8DF" stroke="#5D4037" stroke-width="3.5"/>
+          <path d="M39 70 C45 35, 105 35, 111 70 C98 58, 86 65, 75 54 C64 65, 52 58, 39 70 Z" fill="#8D6E63" stroke="#5D4037" stroke-width="3.5"/>
+          <circle cx="61" cy="80" r="5.5" fill="#5D4037"/>
+          <circle cx="89" cy="80" r="5.5" fill="#5D4037"/>
+          <circle cx="59" cy="78" r="2" fill="#FFF"/>
+          <circle cx="87" cy="78" r="2" fill="#FFF"/>
+          <ellipse cx="50" cy="89" rx="5.5" ry="3" fill="#FF9EB5"/>
+          <ellipse cx="100" cy="89" rx="5.5" ry="3" fill="#FF9EB5"/>
+          <path d="M70 93 Q75 98 80 93" fill="none" stroke="#5D4037" stroke-width="2.8" stroke-linecap="round"/>
+        </svg>
+      </div>
+
+      <h1 class="text-xl font-extrabold text-warmBrown mb-1">
+        حطي إصبعكِ على البصمة 🎀
+      </h1>
+      <p class="text-xs text-lightBrown mb-5">
+        اضغطي مطولاً لثانية ونص عشان تشتغل الأغنية ويفتح عالمكِ 🤎
+      </p>
+
+      <!-- زر البصمة مع شريط التقدم -->
+      <div class="relative w-28 h-28 mx-auto flex items-center justify-center mb-3">
+        <svg class="absolute inset-0 w-full h-full pointer-events-none" viewBox="0 0 120 120">
+          <circle cx="60" cy="60" r="52" fill="none" stroke="#F5EBE6" stroke-width="6" />
+          <circle
+            id="fp-ring"
+            class="ring-progress"
+            cx="60"
+            cy="60"
+            r="52"
+            fill="none"
+            stroke="#E56B8C"
+            stroke-width="6"
+            stroke-linecap="round"
+            stroke-dasharray="326.7"
+            stroke-dashoffset="326.7"
+          />
+        </svg>
+
+        <button
+          id="fp-btn"
+          type="button"
+          aria-label="البصمة"
+          class="w-22 h-22 w-[84px] h-[84px] rounded-full bg-[#FFF6F8] border-2 border-borderPink flex items-center justify-center text-deepPink cursor-pointer active:scale-95 transition-transform focus:outline-none"
+        >
+          <!-- أيقونة بصمة SVG خفيفة -->
+          <svg class="w-11 h-11" viewBox="0 0 24 24" fill="none" stroke="#E56B8C" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M12 10a2 2 0 0 0-2 2c0 1.02-.1 2.51-.26 4"/>
+            <path d="M14 13.12c0 2.38 0 6.38-1 8.88"/>
+            <path d="M17.29 21.02c.12-.6.43-2.3.5-3.02"/>
+            <path d="M2 12a10 10 0 0 1 18-6"/>
+            <path d="M2 16h.01"/>
+            <path d="M21.8 16c.2-2 .131-5.354 0-6"/>
+            <path d="M5 19.5C5.5 18 6 15 6 12a6 6 0 0 1 .34-2"/>
+            <path d="M8.65 22c.21-.66.45-1.32.57-2"/>
+            <path d="M9 6.8a6 6 0 0 1 9 5.2v2"/>
+          </svg>
+        </button>
+      </div>
+
+      <p id="fp-status" class="text-xs font-bold text-deepPink">
+        اضغطي مطولاً للدخول ✨
+      </p>
+      <p class="font-cuteEn text-[11px] text-lightBrown mt-1.5">
+        ♪ Ghostly Kisses - The City Holds My Heart
+      </p>
+    </div>
+  </section>
+
+  <!-- ===================================================================== -->
+  <!-- 2. شاشة الترحيب السريعة (i love you ❤️)                               -->
+  <!-- ===================================================================== -->
+  <div id="screen-welcome" class="fixed inset-0 z-40 hidden flex-col items-center justify-center p-6 bg-[#FFF6F8] text-center">
+    <div class="pop-anim">
+      <div class="text-5xl mb-3">🎀🤎🌸</div>
+      <h2 class="font-cuteEn text-4xl sm:text-5xl font-bold text-deepPink mb-2">
+        i love you ❤️
+      </h2>
+      <p class="text-sm font-bold text-warmBrown">
+        أهلاً بكِ يا Athare ✨
+      </p>
+    </div>
+  </div>
+
+  <!-- ===================================================================== -->
+  <!-- 3. الصفحة الرئيسية (الأغنية + رسومات كيوت + السؤال)                  -->
+  <!-- ===================================================================== -->
+  <main id="screen-main" class="hidden flex-1 flex flex-col justify-between max-w-md mx-auto w-full px-4 py-4">
+    
+    <!-- شريط الأغنية العلوي -->
+    <header class="cute-box rounded-full px-3.5 py-2 flex items-center justify-between gap-2">
+      <div class="flex items-center gap-2.5 overflow-hidden">
+        <div id="disc-icon" class="w-8 h-8 rounded-full bg-warmBrown border-2 border-softPink flex items-center justify-center shrink-0 disc-spin">
+          <div class="w-2.5 h-2.5 rounded-full bg-bgPink"></div>
+        </div>
+        <div class="truncate text-right">
+          <p class="font-cuteEn text-xs font-bold text-warmBrown truncate">
+            The City Holds My Heart
+          </p>
+          <p class="font-cuteEn text-[10px] text-deepPink font-semibold">
+            Ghostly Kisses ♪
+          </p>
+        </div>
+      </div>
+
+      <button
+        id="music-toggle"
+        type="button"
+        class="px-3.5 py-1.5 rounded-full latte-inner text-xs font-bold text-warmBrown shrink-0 cursor-pointer active:scale-95 transition-transform"
+      >
+        ⏸ إيقاف
+      </button>
+    </header>
+
+    <!-- البطاقة الرئيسية في المنتصف -->
+    <section class="cute-box rounded-[2.2rem] p-6 sm:p-8 text-center my-auto pop-anim">
+      
+      <div class="inline-block px-3.5 py-1 rounded-full bg-[#FF9EB5]/25 text-warmBrown text-xs font-bold mb-4">
+        🌸 i love you Athare 🌸
+      </div>
+
+      <!-- رسومات هيلو كيتي وبنات أنمي صغيرات كيوت -->
+      <div class="flex items-end justify-center gap-2 mb-5 bob-anim">
+        <!-- بنوتة أنمي كيوت يسار -->
+        <svg class="w-20 h-24" viewBox="0 0 150 175">
+          <circle cx="30" cy="82" r="14" fill="#A1887F" stroke="#5D4037" stroke-width="3.5"/>
+          <circle cx="120" cy="82" r="14" fill="#A1887F" stroke="#5D4037" stroke-width="3.5"/>
+          <circle cx="75" cy="82" r="36" fill="#FFE8DF" stroke="#5D4037" stroke-width="3.5"/>
+          <path d="M39 76 C45 38, 105 38, 111 76 C98 62, 86 70, 75 58 C64 70, 52 62, 39 76 Z" fill="#A1887F" stroke="#5D4037" stroke-width="3.5"/>
+          <circle cx="61" cy="86" r="5.5" fill="#5D4037"/>
+          <circle cx="89" cy="86" r="5.5" fill="#5D4037"/>
+          <circle cx="59" cy="84" r="2" fill="#FFF"/>
+          <circle cx="87" cy="84" r="2" fill="#FFF"/>
+          <ellipse cx="50" cy="95" rx="5.5" ry="3" fill="#FF9EB5"/>
+          <ellipse cx="100" cy="95" rx="5.5" ry="3" fill="#FF9EB5"/>
+          <path d="M70 99 Q75 104 80 99" fill="none" stroke="#5D4037" stroke-width="2.8" stroke-linecap="round"/>
+          <path d="M49 118 L101 118 L110 160 L40 160 Z" fill="#F5EBE6" stroke="#5D4037" stroke-width="3.5" stroke-linejoin="round"/>
+        </svg>
+
+        <!-- هيلو كيتي في المنتصف -->
+        <svg class="w-24 h-24" viewBox="0 0 180 170">
+          <path d="M42 60 L32 22 L68 42 Z" fill="#FFF" stroke="#5D4037" stroke-width="4" stroke-linejoin="round"/>
+          <path d="M138 60 L148 22 L112 42 Z" fill="#FFF" stroke="#5D4037" stroke-width="4" stroke-linejoin="round"/>
+          <ellipse cx="90" cy="86" rx="58" ry="44" fill="#FFF" stroke="#5D4037" stroke-width="4"/>
+          <g transform="translate(120, 35) rotate(18)">
+            <ellipse cx="-13" cy="0" rx="12" ry="9.5" fill="#FF9EB5" stroke="#5D4037" stroke-width="3.5"/>
+            <ellipse cx="13" cy="0" rx="12" ry="9.5" fill="#FF9EB5" stroke="#5D4037" stroke-width="3.5"/>
+            <circle cx="0" cy="0" r="6.5" fill="#FFD1DC" stroke="#5D4037" stroke-width="3"/>
+          </g>
+          <ellipse cx="66" cy="87" rx="5" ry="6.5" fill="#5D4037"/>
+          <ellipse cx="114" cy="87" rx="5" ry="6.5" fill="#5D4037"/>
+          <ellipse cx="90" cy="97" rx="6" ry="4" fill="#F6BD60" stroke="#5D4037" stroke-width="2.5"/>
+          <ellipse cx="52" cy="99" rx="8" ry="4.5" fill="#FFB3C6"/>
+          <ellipse cx="128" cy="99" rx="8" ry="4.5" fill="#FFB3C6"/>
+          <!-- قلب وردي -->
+          <path d="M90 158 C70 142, 62 128, 73 118 C81 110, 90 118, 90 124 C90 118, 99 110, 107 118 C118 128, 110 142, 90 158 Z" fill="#FF9EB5" stroke="#5D4037" stroke-width="3.5"/>
+        </svg>
+
+        <!-- بنوتة أنمي كيوت يمين -->
+        <svg class="w-20 h-24" viewBox="0 0 150 175">
+          <path d="M35 80 C30 125, 40 152, 52 158 L98 158 C110 152, 120 125, 115 80 Z" fill="#795548" stroke="#5D4037" stroke-width="3.5"/>
+          <circle cx="75" cy="82" r="36" fill="#FFE8DF" stroke="#5D4037" stroke-width="3.5"/>
+          <path d="M39 76 C46 38, 104 38, 111 76 C97 62, 86 70, 75 58 C64 70, 53 62, 39 76 Z" fill="#795548" stroke="#5D4037" stroke-width="3.5"/>
+          <path d="M56 86 Q62 79 68 86" fill="none" stroke="#5D4037" stroke-width="3.2" stroke-linecap="round"/>
+          <path d="M82 86 Q88 79 94 86" fill="none" stroke="#5D4037" stroke-width="3.2" stroke-linecap="round"/>
+          <ellipse cx="50" cy="95" rx="5.5" ry="3" fill="#FF9EB5"/>
+          <ellipse cx="100" cy="95" rx="5.5" ry="3" fill="#FF9EB5"/>
+          <path d="M70 99 Q75 105 80 99" fill="none" stroke="#5D4037" stroke-width="2.8" stroke-linecap="round"/>
+          <path d="M49 118 L101 118 L110 160 L40 160 Z" fill="#FFD1DC" stroke="#5D4037" stroke-width="3.5" stroke-linejoin="round"/>
+        </svg>
+      </div>
+
+      <!-- السؤال المطلوب بالضبط -->
+      <h2 class="text-2xl sm:text-3xl font-extrabold text-warmBrown leading-snug mb-2">
+        «تدرين قد إيش أحبك؟»
+      </h2>
+
+      <p class="text-xs text-lightBrown mb-6">
+        اضغطي الزر اللي تحت عشان تشوفين الإجابة 🤎🎀
+      </p>
+
+      <!-- زر المفاجأة -->
+      <button
+        id="open-surprise-btn"
+        type="button"
+        class="pink-btn w-full py-3.5 px-6 rounded-full text-white font-extrabold text-base sm:text-lg cursor-pointer"
+      >
+        اضغطي هنا عشان تعرفين 🎀
+      </button>
+    </section>
+
+    <footer class="text-center text-[11px] text-lightBrown">
+      صُنعت بكل حب، خصيصاً لكِ 🤎🌸
+    </footer>
+  </main>
+
+  <!-- ===================================================================== -->
+  <!-- 4. بطاقة رسالة المفاجأة (Surprise Letter Modal)                       -->
+  <!-- ===================================================================== -->
+  <div id="modal-surprise" class="fixed inset-0 z-50 hidden items-center justify-center p-4 bg-[#5D4037]/40">
+    <div class="cute-box rounded-[2rem] max-w-md w-full p-6 sm:p-7 text-center relative pop-anim max-h-[90dvh] overflow-y-auto">
+      
+      <button
+        id="close-surprise-btn"
+        type="button"
+        aria-label="إغلاق"
+        class="absolute top-4 left-4 w-8 h-8 rounded-full latte-inner text-warmBrown font-bold text-sm flex items-center justify-center cursor-pointer"
+      >
+        ✕
+      </button>
+
+      <!-- هيلو كيتي سعيدة -->
+      <svg class="w-20 h-16 mx-auto mb-2" viewBox="0 0 180 150">
+        <path d="M40 58 L30 20 L66 40 Z" fill="#FFF" stroke="#5D4037" stroke-width="4" stroke-linejoin="round"/>
+        <path d="M140 58 L150 20 L114 40 Z" fill="#FFF" stroke="#5D4037" stroke-width="4" stroke-linejoin="round"/>
+        <ellipse cx="90" cy="84" rx="60" ry="45" fill="#FFF" stroke="#5D4037" stroke-width="4"/>
+        <g transform="translate(120, 33) rotate(18)">
+          <ellipse cx="-14" cy="0" rx="13" ry="10" fill="#FF9EB5" stroke="#5D4037" stroke-width="3.5"/>
+          <ellipse cx="14" cy="0" rx="13" ry="10" fill="#FF9EB5" stroke="#5D4037" stroke-width="3.5"/>
+          <circle cx="0" cy="0" r="7" fill="#FFD1DC" stroke="#5D4037" stroke-width="3"/>
+        </g>
+        <path d="M58 86 Q66 76 74 86" fill="none" stroke="#5D4037" stroke-width="4" stroke-linecap="round"/>
+        <path d="M106 86 Q114 76 122 86" fill="none" stroke="#5D4037" stroke-width="4" stroke-linecap="round"/>
+        <ellipse cx="90" cy="95" rx="6" ry="4" fill="#F6BD60" stroke="#5D4037" stroke-width="2.5"/>
+        <ellipse cx="52" cy="97" rx="8" ry="4.5" fill="#FFB3C6"/>
+        <ellipse cx="128" cy="97" rx="8" ry="4.5" fill="#FFB3C6"/>
+      </svg>
+
+      <h3 class="font-cuteEn text-2xl sm:text-3xl font-bold text-deepPink mb-4">
+        i love you Athare ❤️
+      </h3>
+
+      <!-- نص الرسالة المفاجئة بالحرف الواحد -->
+      <div class="latte-inner rounded-2xl p-5 text-right space-y-3.5">
+        <p class="text-sm sm:text-base text-warmBrown font-bold leading-relaxed">
+          يمكن ما تكفي كل الكلمات عشان أوصف لك مكانتك عندي، لكن وجودك يخلّي أيامي أحلى، وضحكتك من الأشياء اللي أحبها كثير. أحب تفاصيلك، وسوالفك، وكل لحظة حلوة تجمعني فيك.
+        </p>
+
+        <p class="text-sm sm:text-base text-warmBrown font-bold leading-relaxed">
+          وأبيك تعرفين إنك غالية عليّ أكثر مما تتخيلين… وأتمنى أشوفك دايم مبسوطة. ♡
+        </p>
+
+        <div class="pt-2.5 border-t border-[#E4CFC4] text-center">
+          <p class="text-xs sm:text-sm font-extrabold text-deepPink">
+            صُنعت بكل حب، خصيصاً لكِ 🎀🤎
+          </p>
+        </div>
+      </div>
+
+      <button
+        id="hearts-burst-btn"
+        type="button"
+        class="mt-4 px-5 py-2 rounded-full bg-[#FF9EB5]/30 text-warmBrown text-xs font-bold cursor-pointer active:scale-95 transition-transform"
+      >
+        انثري قلوب أكثر 🌸✨
+      </button>
+    </div>
+  </div>
+
+  <!-- ===================================================================== -->
+  <!-- JavaScript: مشغل MP3 المحلي + البصمة                                 -->
+  <!-- ===================================================================== -->
+  <script>
+    const audio = document.getElementById('song-audio');
+    audio.volume = 1;
+
+    function playSongNow() {
+      const playPromise = audio.play();
+      if (playPromise !== undefined) {
+        playPromise.catch(() => {
+          // في حال فشل التشغيل لأي سبب (مثلاً الملف غير موجود)
+          console.log('تعذر تشغيل الأغنية');
+        });
+      }
+      updateMusicButton(true);
+    }
+
+    function pauseSongNow() {
+      audio.pause();
+      updateMusicButton(false);
+    }
+
+    function updateMusicButton(isPlaying) {
+      const btn = document.getElementById('music-toggle');
+      const disc = document.getElementById('disc-icon');
+      if (!btn || !disc) return;
+      if (isPlaying) {
+        btn.textContent = '⏸ إيقاف';
+        disc.classList.remove('disc-paused');
+      } else {
+        btn.textContent = '▶ تشغيل';
+        disc.classList.add('disc-paused');
+      }
+    }
+
+    // تحديث الزر تلقائياً حسب حالة الصوت
+    audio.addEventListener('play', () => updateMusicButton(true));
+    audio.addEventListener('pause', () => updateMusicButton(false));
+
+    document.getElementById('music-toggle').addEventListener('click', () => {
+      if (audio.paused) {
+        playSongNow();
+      } else {
+        pauseSongNow();
+      }
+    });
+
+    // منطق البصمة السريعة (1.4 ثانية)
+    (function setupFingerprint() {
+      const btn = document.getElementById('fp-btn');
+      const ring = document.getElementById('fp-ring');
+      const status = document.getElementById('fp-status');
+      const sFp = document.getElementById('screen-fingerprint');
+      const sWelcome = document.getElementById('screen-welcome');
+      const sMain = document.getElementById('screen-main');
+
+      const totalLen = 326.7;
+      let pct = 0;
+      let holding = false;
+      let done = false;
+
+      function loop() {
+        if (done) return;
+        if (holding) {
+          pct = Math.min(100, pct + 2.5);
+          status.textContent = `جاري الفتح... ${Math.floor(pct)}% 🎀`;
+          if (pct >= 100) {
+            unlock();
+            return;
+          }
+        } else if (pct > 0) {
+          pct = Math.max(0, pct - 4);
+          if (pct === 0) status.textContent = 'اضغطي مطولاً للدخول ✨';
+        }
+        ring.style.strokeDashoffset = totalLen - (pct / 100) * totalLen;
+        requestAnimationFrame(loop);
+      }
+
+      function onDown(e) {
+        if (e.type === 'touchstart') e.preventDefault();
+        if (done) return;
+        holding = true;
+        // تشغيل الأغنية في لحظة لمس البصمة
+        playSongNow();
+      }
+
+      function onUp() {
+        holding = false;
+      }
+
+      function unlock() {
+        done = true;
+        playSongNow();
+        dropHearts(16);
+
+        sFp.style.display = 'none';
+        sWelcome.classList.remove('hidden');
+        sWelcome.classList.add('flex');
+
+        setTimeout(() => {
+          sWelcome.style.display = 'none';
+          sMain.classList.remove('hidden');
+          sMain.classList.add('flex');
+        }, 2000);
+      }
+
+      btn.addEventListener('mousedown', onDown);
+      window.addEventListener('mouseup', onUp);
+      btn.addEventListener('touchstart', onDown, { passive: false });
+      window.addEventListener('touchend', onUp);
+
+      requestAnimationFrame(loop);
+    })();
+
+    // نافذة رسالة المفاجأة وتناثر القلوب
+    const modal = document.getElementById('modal-surprise');
+
+    document.getElementById('open-surprise-btn').addEventListener('click', () => {
+      modal.classList.remove('hidden');
+      modal.classList.add('flex');
+      dropHearts(22);
+    });
+
+    document.getElementById('close-surprise-btn').addEventListener('click', () => {
+      modal.classList.add('hidden');
+      modal.classList.remove('flex');
+    });
+
+    document.getElementById('hearts-burst-btn').addEventListener('click', () => {
+      dropHearts(18);
+    });
+
+    function dropHearts(count) {
+      const icons = ['🎀', '❤️', '🌸', '🤎', '✨'];
+      for (let i = 0; i < count; i++) {
+        const span = document.createElement('span');
+        span.className = 'mini-heart';
+        span.textContent = icons[i % icons.length];
+        span.style.left = `${Math.random() * 94}vw`;
+        span.style.fontSize = `${16 + Math.random() * 12}px`;
+        span.style.animationDuration = `${2.2 + Math.random() * 1.5}s`;
+        document.body.appendChild(span);
+        setTimeout(() => span.remove(), 3800);
+      }
+    }
+  </script>
+</body>
+</html>
