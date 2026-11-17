@@ -5,12 +5,10 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
   <title>i love you Athare 🎀</title>
 
-  <!-- خطوط خفيفة وسريعة التحميل -->
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@600;700;800&family=Quicksand:wght@600;700&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@500;600;700;800&family=Quicksand:wght@500;600;700&display=swap" rel="stylesheet" />
 
-  <!-- Tailwind CSS -->
   <script src="https://cdn.tailwindcss.com"></script>
 
   <script>
@@ -43,9 +41,12 @@
     }
 
     body {
-      background-color: #FFF6F8;
-      background-image: radial-gradient(#F4B8C8 1px, transparent 1px);
-      background-size: 26px 26px;
+      background: linear-gradient(180deg, #FFF6F8 0%, #FFF0F4 100%);
+      background-image: 
+        radial-gradient(circle at 20% 30%, rgba(244, 184, 200, 0.25) 0%, transparent 50%),
+        radial-gradient(circle at 80% 70%, rgba(245, 235, 230, 0.4) 0%, transparent 50%),
+        radial-gradient(#F4B8C8 1.2px, transparent 1.2px);
+      background-size: 100% 100%, 100% 100%, 28px 28px;
       color: #5D4037;
       font-family: 'Cairo', sans-serif;
       margin: 0;
@@ -54,11 +55,13 @@
       overflow-x: hidden;
     }
 
-    /* بطاقة خفيفة جداً بدون blur ثقيل على المعالج */
     .cute-box {
-      background: #FFFDFD;
+      background: rgba(255, 253, 253, 0.92);
       border: 2.5px solid #F4B8C8;
-      box-shadow: 0 10px 24px rgba(93, 64, 55, 0.08);
+      box-shadow: 
+        0 8px 32px rgba(93, 64, 55, 0.08),
+        0 2px 8px rgba(244, 184, 200, 0.15);
+      backdrop-filter: blur(8px);
     }
 
     .latte-inner {
@@ -68,23 +71,31 @@
 
     .pink-btn {
       background: linear-gradient(135deg, #FF9EB5 0%, #E56B8C 100%);
-      box-shadow: 0 6px 15px rgba(229, 107, 140, 0.28);
-      transition: transform 0.18s ease;
-      will-change: transform;
+      box-shadow: 0 8px 20px rgba(229, 107, 140, 0.35);
+      transition: all 0.2s ease;
     }
 
     .pink-btn:active {
-      transform: scale(0.95);
+      transform: scale(0.96);
     }
 
-    /* حركات GPU خفيفة جداً (transform فقط) */
+    .pink-btn:hover {
+      box-shadow: 0 10px 28px rgba(229, 107, 140, 0.45);
+      transform: translateY(-1px);
+    }
+
     @keyframes gentleBob {
       0%, 100% { transform: translate3d(0, 0, 0); }
-      50% { transform: translate3d(0, -6px, 0); }
+      50% { transform: translate3d(0, -8px, 0); }
+    }
+
+    @keyframes softFloat {
+      0%, 100% { transform: translate3d(0, 0, 0) rotate(0deg); }
+      50% { transform: translate3d(0, -5px, 0) rotate(1deg); }
     }
 
     @keyframes popScale {
-      0% { opacity: 0; transform: scale(0.88); }
+      0% { opacity: 0; transform: scale(0.9); }
       100% { opacity: 1; transform: scale(1); }
     }
 
@@ -93,70 +104,82 @@
       to { transform: rotate(360deg); }
     }
 
+    @keyframes pulseSoft {
+      0%, 100% { opacity: 1; }
+      50% { opacity: 0.85; }
+    }
+
     .bob-anim {
-      animation: gentleBob 3.2s ease-in-out infinite;
-      will-change: transform;
+      animation: gentleBob 3.5s ease-in-out infinite;
+    }
+
+    .float-anim {
+      animation: softFloat 4s ease-in-out infinite;
     }
 
     .pop-anim {
-      animation: popScale 0.4s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+      animation: popScale 0.5s cubic-bezier(0.22, 1, 0.36, 1) forwards;
     }
 
     .disc-spin {
-      animation: spinDisc 7s linear infinite;
-      will-change: transform;
+      animation: spinDisc 8s linear infinite;
     }
 
     .disc-paused {
       animation-play-state: paused;
     }
 
-    /* حلقة تقدم البصمة */
     .ring-progress {
-      transition: stroke-dashoffset 0.06s linear;
+      transition: stroke-dashoffset 0.05s linear;
       transform: rotate(-90deg);
       transform-origin: 50% 50%;
     }
 
-    /* قلوب متساقطة خفيفة */
     .mini-heart {
       position: fixed;
       top: -30px;
       pointer-events: none;
       z-index: 999;
       animation: dropHeart linear forwards;
-      will-change: transform, opacity;
     }
 
     @keyframes dropHeart {
       to {
-        transform: translate3d(0, 105dvh, 0);
+        transform: translate3d(0, 110dvh, 0);
         opacity: 0;
       }
+    }
+
+    .decorative-dot {
+      position: absolute;
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: #FF9EB5;
+      opacity: 0.4;
     }
   </style>
 </head>
 <body class="flex flex-col justify-between min-h-[100dvh]">
 
-  <!-- مشغل الصوت المحلي (ملف MP3) -->
   <audio id="song-audio" loop preload="auto">
-    <source src="Ghostly Kisses - The City Holds My Heart.mp3" type="audio/mpeg">
+    <source src="Ghostly%20Kisses%20-%20The%20City%20Holds%20My%20Heart.mp3" type="audio/mpeg">
   </audio>
 
-  <!-- ===================================================================== -->
-  <!-- 1. شاشة البصمة التفاعلية (سريعة وخفيفة جداً)                          -->
-  <!-- ===================================================================== -->
-  <section id="screen-fingerprint" class="fixed inset-0 z-50 flex items-center justify-center p-4 bg-[#FFF6F8]">
-    <div class="cute-box rounded-[2rem] max-w-sm w-full p-6 sm:p-7 text-center">
+  <!-- شاشة البصمة -->
+  <section id="screen-fingerprint" class="fixed inset-0 z-50 flex items-center justify-center p-5 bg-gradient-to-b from-[#FFF6F8] to-[#FFF0F4]">
+    <div class="cute-box rounded-[2.5rem] max-w-sm w-full p-7 sm:p-8 text-center relative overflow-hidden">
       
-      <div class="inline-block px-3.5 py-1 rounded-full latte-inner text-xs font-bold text-warmBrown mb-3">
+      <div class="decorative-dot" style="top: 20px; right: 30px;"></div>
+      <div class="decorative-dot" style="bottom: 40px; left: 25px; background: #E56B8C;"></div>
+
+      <div class="inline-block px-4 py-1.5 rounded-full latte-inner text-xs font-bold text-warmBrown mb-4">
         🎀 خاص لـ Athare 🤎
       </div>
 
-      <!-- رسمة هيلو كيتي + بنوتة أنمي كيوت خفيفة -->
-      <div class="flex items-center justify-center gap-3 mb-3 bob-anim">
+      <div class="flex items-center justify-center gap-4 mb-4 bob-anim">
         <!-- هيلو كيتي -->
-        <svg class="w-24 h-20" viewBox="0 0 180 150">
+        <svg class="w-28 h-24" viewBox="0 0 180 150">
           <path d="M40 58 L30 20 L66 40 Z" fill="#FFF" stroke="#5D4037" stroke-width="4" stroke-linejoin="round"/>
           <path d="M140 58 L150 20 L114 40 Z" fill="#FFF" stroke="#5D4037" stroke-width="4" stroke-linejoin="round"/>
           <ellipse cx="90" cy="84" rx="60" ry="45" fill="#FFF" stroke="#5D4037" stroke-width="4"/>
@@ -176,8 +199,8 @@
           <line x1="162" y1="92" x2="143" y2="92" stroke="#5D4037" stroke-width="3.5" stroke-linecap="round"/>
         </svg>
 
-        <!-- بنوتة أنمي كيوت صغيرة -->
-        <svg class="w-20 h-20" viewBox="0 0 150 150">
+        <!-- بنوتة أنمي -->
+        <svg class="w-24 h-24" viewBox="0 0 150 150">
           <path d="M35 78 C28 120, 38 138, 52 142 L98 142 C112 138, 122 120, 115 78 Z" fill="#8D6E63" stroke="#5D4037" stroke-width="3.5"/>
           <circle cx="75" cy="76" r="36" fill="#FFE8DF" stroke="#5D4037" stroke-width="3.5"/>
           <path d="M39 70 C45 35, 105 35, 111 70 C98 58, 86 65, 75 54 C64 65, 52 58, 39 70 Z" fill="#8D6E63" stroke="#5D4037" stroke-width="3.5"/>
@@ -191,17 +214,16 @@
         </svg>
       </div>
 
-      <h1 class="text-xl font-extrabold text-warmBrown mb-1">
+      <h1 class="text-2xl font-extrabold text-warmBrown mb-2 leading-tight">
         حطي إصبعكِ على البصمة 🎀
       </h1>
-      <p class="text-xs text-lightBrown mb-5">
+      <p class="text-sm text-lightBrown mb-6 leading-relaxed">
         اضغطي مطولاً لثانية ونص عشان تشتغل الأغنية ويفتح عالمكِ 🤎
       </p>
 
-      <!-- زر البصمة مع شريط التقدم -->
-      <div class="relative w-28 h-28 mx-auto flex items-center justify-center mb-3">
+      <div class="relative w-32 h-32 mx-auto flex items-center justify-center mb-4">
         <svg class="absolute inset-0 w-full h-full pointer-events-none" viewBox="0 0 120 120">
-          <circle cx="60" cy="60" r="52" fill="none" stroke="#F5EBE6" stroke-width="6" />
+          <circle cx="60" cy="60" r="52" fill="none" stroke="#F5EBE6" stroke-width="7" />
           <circle
             id="fp-ring"
             class="ring-progress"
@@ -210,7 +232,7 @@
             r="52"
             fill="none"
             stroke="#E56B8C"
-            stroke-width="6"
+            stroke-width="7"
             stroke-linecap="round"
             stroke-dasharray="326.7"
             stroke-dashoffset="326.7"
@@ -221,10 +243,9 @@
           id="fp-btn"
           type="button"
           aria-label="البصمة"
-          class="w-22 h-22 w-[84px] h-[84px] rounded-full bg-[#FFF6F8] border-2 border-borderPink flex items-center justify-center text-deepPink cursor-pointer active:scale-95 transition-transform focus:outline-none"
+          class="w-[92px] h-[92px] rounded-full bg-white border-2 border-borderPink flex items-center justify-center text-deepPink cursor-pointer active:scale-95 transition-all shadow-md"
         >
-          <!-- أيقونة بصمة SVG خفيفة -->
-          <svg class="w-11 h-11" viewBox="0 0 24 24" fill="none" stroke="#E56B8C" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round">
+          <svg class="w-12 h-12" viewBox="0 0 24 24" fill="none" stroke="#E56B8C" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
             <path d="M12 10a2 2 0 0 0-2 2c0 1.02-.1 2.51-.26 4"/>
             <path d="M14 13.12c0 2.38 0 6.38-1 8.88"/>
             <path d="M17.29 21.02c.12-.6.43-2.3.5-3.02"/>
@@ -238,46 +259,42 @@
         </button>
       </div>
 
-      <p id="fp-status" class="text-xs font-bold text-deepPink">
+      <p id="fp-status" class="text-sm font-bold text-deepPink mb-1">
         اضغطي مطولاً للدخول ✨
       </p>
-      <p class="font-cuteEn text-[11px] text-lightBrown mt-1.5">
+      <p class="font-cuteEn text-xs text-lightBrown">
         ♪ Ghostly Kisses - The City Holds My Heart
       </p>
     </div>
   </section>
 
-  <!-- ===================================================================== -->
-  <!-- 2. شاشة الترحيب السريعة (i love you ❤️)                               -->
-  <!-- ===================================================================== -->
-  <div id="screen-welcome" class="fixed inset-0 z-40 hidden flex-col items-center justify-center p-6 bg-[#FFF6F8] text-center">
+  <!-- شاشة الترحيب -->
+  <div id="screen-welcome" class="fixed inset-0 z-40 hidden flex-col items-center justify-center p-6 bg-gradient-to-b from-[#FFF6F8] to-[#FFF0F4] text-center">
     <div class="pop-anim">
-      <div class="text-5xl mb-3">🎀🤎🌸</div>
-      <h2 class="font-cuteEn text-4xl sm:text-5xl font-bold text-deepPink mb-2">
+      <div class="text-6xl mb-4">🎀🤎🌸</div>
+      <h2 class="font-cuteEn text-5xl sm:text-6xl font-bold text-deepPink mb-3">
         i love you ❤️
       </h2>
-      <p class="text-sm font-bold text-warmBrown">
+      <p class="text-base font-bold text-warmBrown">
         أهلاً بكِ يا Athare ✨
       </p>
     </div>
   </div>
 
-  <!-- ===================================================================== -->
-  <!-- 3. الصفحة الرئيسية (الأغنية + رسومات كيوت + السؤال)                  -->
-  <!-- ===================================================================== -->
-  <main id="screen-main" class="hidden flex-1 flex flex-col justify-between max-w-md mx-auto w-full px-4 py-4">
+  <!-- الصفحة الرئيسية -->
+  <main id="screen-main" class="hidden flex-1 flex flex-col justify-between max-w-md mx-auto w-full px-5 py-5">
     
-    <!-- شريط الأغنية العلوي -->
-    <header class="cute-box rounded-full px-3.5 py-2 flex items-center justify-between gap-2">
-      <div class="flex items-center gap-2.5 overflow-hidden">
-        <div id="disc-icon" class="w-8 h-8 rounded-full bg-warmBrown border-2 border-softPink flex items-center justify-center shrink-0 disc-spin">
-          <div class="w-2.5 h-2.5 rounded-full bg-bgPink"></div>
+    <!-- شريط الأغنية -->
+    <header class="cute-box rounded-full px-4 py-2.5 flex items-center justify-between gap-3 shadow-lg">
+      <div class="flex items-center gap-3 overflow-hidden">
+        <div id="disc-icon" class="w-9 h-9 rounded-full bg-warmBrown border-2 border-softPink flex items-center justify-center shrink-0 disc-spin shadow-md">
+          <div class="w-3 h-3 rounded-full bg-bgPink"></div>
         </div>
         <div class="truncate text-right">
-          <p class="font-cuteEn text-xs font-bold text-warmBrown truncate">
+          <p class="font-cuteEn text-sm font-bold text-warmBrown truncate">
             The City Holds My Heart
           </p>
-          <p class="font-cuteEn text-[10px] text-deepPink font-semibold">
+          <p class="font-cuteEn text-[11px] text-deepPink font-semibold">
             Ghostly Kisses ♪
           </p>
         </div>
@@ -286,23 +303,22 @@
       <button
         id="music-toggle"
         type="button"
-        class="px-3.5 py-1.5 rounded-full latte-inner text-xs font-bold text-warmBrown shrink-0 cursor-pointer active:scale-95 transition-transform"
+        class="px-4 py-2 rounded-full latte-inner text-xs font-bold text-warmBrown shrink-0 cursor-pointer active:scale-95 transition-transform"
       >
         ⏸ إيقاف
       </button>
     </header>
 
-    <!-- البطاقة الرئيسية في المنتصف -->
-    <section class="cute-box rounded-[2.2rem] p-6 sm:p-8 text-center my-auto pop-anim">
+    <!-- البطاقة الرئيسية -->
+    <section class="cute-box rounded-[2.5rem] p-7 sm:p-9 text-center my-6 relative pop-anim">
       
-      <div class="inline-block px-3.5 py-1 rounded-full bg-[#FF9EB5]/25 text-warmBrown text-xs font-bold mb-4">
+      <div class="inline-block px-4 py-1.5 rounded-full bg-[#FF9EB5]/20 text-warmBrown text-xs font-bold mb-5">
         🌸 i love you Athare 🌸
       </div>
 
-      <!-- رسومات هيلو كيتي وبنات أنمي صغيرات كيوت -->
-      <div class="flex items-end justify-center gap-2 mb-5 bob-anim">
-        <!-- بنوتة أنمي كيوت يسار -->
-        <svg class="w-20 h-24" viewBox="0 0 150 175">
+      <div class="flex items-end justify-center gap-1 mb-6 float-anim">
+        <!-- بنوتة يسار -->
+        <svg class="w-22 h-28" viewBox="0 0 150 175">
           <circle cx="30" cy="82" r="14" fill="#A1887F" stroke="#5D4037" stroke-width="3.5"/>
           <circle cx="120" cy="82" r="14" fill="#A1887F" stroke="#5D4037" stroke-width="3.5"/>
           <circle cx="75" cy="82" r="36" fill="#FFE8DF" stroke="#5D4037" stroke-width="3.5"/>
@@ -317,8 +333,8 @@
           <path d="M49 118 L101 118 L110 160 L40 160 Z" fill="#F5EBE6" stroke="#5D4037" stroke-width="3.5" stroke-linejoin="round"/>
         </svg>
 
-        <!-- هيلو كيتي في المنتصف -->
-        <svg class="w-24 h-24" viewBox="0 0 180 170">
+        <!-- هيلو كيتي -->
+        <svg class="w-28 h-28" viewBox="0 0 180 170">
           <path d="M42 60 L32 22 L68 42 Z" fill="#FFF" stroke="#5D4037" stroke-width="4" stroke-linejoin="round"/>
           <path d="M138 60 L148 22 L112 42 Z" fill="#FFF" stroke="#5D4037" stroke-width="4" stroke-linejoin="round"/>
           <ellipse cx="90" cy="86" rx="58" ry="44" fill="#FFF" stroke="#5D4037" stroke-width="4"/>
@@ -332,12 +348,11 @@
           <ellipse cx="90" cy="97" rx="6" ry="4" fill="#F6BD60" stroke="#5D4037" stroke-width="2.5"/>
           <ellipse cx="52" cy="99" rx="8" ry="4.5" fill="#FFB3C6"/>
           <ellipse cx="128" cy="99" rx="8" ry="4.5" fill="#FFB3C6"/>
-          <!-- قلب وردي -->
           <path d="M90 158 C70 142, 62 128, 73 118 C81 110, 90 118, 90 124 C90 118, 99 110, 107 118 C118 128, 110 142, 90 158 Z" fill="#FF9EB5" stroke="#5D4037" stroke-width="3.5"/>
         </svg>
 
-        <!-- بنوتة أنمي كيوت يمين -->
-        <svg class="w-20 h-24" viewBox="0 0 150 175">
+        <!-- بنوتة يمين -->
+        <svg class="w-22 h-28" viewBox="0 0 150 175">
           <path d="M35 80 C30 125, 40 152, 52 158 L98 158 C110 152, 120 125, 115 80 Z" fill="#795548" stroke="#5D4037" stroke-width="3.5"/>
           <circle cx="75" cy="82" r="36" fill="#FFE8DF" stroke="#5D4037" stroke-width="3.5"/>
           <path d="M39 76 C46 38, 104 38, 111 76 C97 62, 86 70, 75 58 C64 70, 53 62, 39 76 Z" fill="#795548" stroke="#5D4037" stroke-width="3.5"/>
@@ -350,47 +365,42 @@
         </svg>
       </div>
 
-      <!-- السؤال المطلوب بالضبط -->
-      <h2 class="text-2xl sm:text-3xl font-extrabold text-warmBrown leading-snug mb-2">
+      <h2 class="text-2xl sm:text-3xl font-extrabold text-warmBrown leading-snug mb-3">
         «تدرين قد إيش أحبك؟»
       </h2>
 
-      <p class="text-xs text-lightBrown mb-6">
+      <p class="text-sm text-lightBrown mb-7">
         اضغطي الزر اللي تحت عشان تشوفين الإجابة 🤎🎀
       </p>
 
-      <!-- زر المفاجأة -->
       <button
         id="open-surprise-btn"
         type="button"
-        class="pink-btn w-full py-3.5 px-6 rounded-full text-white font-extrabold text-base sm:text-lg cursor-pointer"
+        class="pink-btn w-full py-4 px-6 rounded-full text-white font-extrabold text-base sm:text-lg cursor-pointer"
       >
         اضغطي هنا عشان تعرفين 🎀
       </button>
     </section>
 
-    <footer class="text-center text-[11px] text-lightBrown">
+    <footer class="text-center text-xs text-lightBrown pb-2">
       صُنعت بكل حب، خصيصاً لكِ 🤎🌸
     </footer>
   </main>
 
-  <!-- ===================================================================== -->
-  <!-- 4. بطاقة رسالة المفاجأة (Surprise Letter Modal)                       -->
-  <!-- ===================================================================== -->
-  <div id="modal-surprise" class="fixed inset-0 z-50 hidden items-center justify-center p-4 bg-[#5D4037]/40">
-    <div class="cute-box rounded-[2rem] max-w-md w-full p-6 sm:p-7 text-center relative pop-anim max-h-[90dvh] overflow-y-auto">
+  <!-- نافذة المفاجأة -->
+  <div id="modal-surprise" class="fixed inset-0 z-50 hidden items-center justify-center p-4 bg-black/30 backdrop-blur-sm">
+    <div class="cute-box rounded-[2.5rem] max-w-md w-full p-7 sm:p-8 text-center relative pop-anim max-h-[90dvh] overflow-y-auto">
       
       <button
         id="close-surprise-btn"
         type="button"
         aria-label="إغلاق"
-        class="absolute top-4 left-4 w-8 h-8 rounded-full latte-inner text-warmBrown font-bold text-sm flex items-center justify-center cursor-pointer"
+        class="absolute top-4 left-4 w-9 h-9 rounded-full latte-inner text-warmBrown font-bold text-base flex items-center justify-center cursor-pointer hover:bg-[#E4CFC4] transition-colors"
       >
         ✕
       </button>
 
-      <!-- هيلو كيتي سعيدة -->
-      <svg class="w-20 h-16 mx-auto mb-2" viewBox="0 0 180 150">
+      <svg class="w-24 h-20 mx-auto mb-3" viewBox="0 0 180 150">
         <path d="M40 58 L30 20 L66 40 Z" fill="#FFF" stroke="#5D4037" stroke-width="4" stroke-linejoin="round"/>
         <path d="M140 58 L150 20 L114 40 Z" fill="#FFF" stroke="#5D4037" stroke-width="4" stroke-linejoin="round"/>
         <ellipse cx="90" cy="84" rx="60" ry="45" fill="#FFF" stroke="#5D4037" stroke-width="4"/>
@@ -406,12 +416,11 @@
         <ellipse cx="128" cy="97" rx="8" ry="4.5" fill="#FFB3C6"/>
       </svg>
 
-      <h3 class="font-cuteEn text-2xl sm:text-3xl font-bold text-deepPink mb-4">
+      <h3 class="font-cuteEn text-3xl sm:text-4xl font-bold text-deepPink mb-5">
         i love you Athare ❤️
       </h3>
 
-      <!-- نص الرسالة المفاجئة بالحرف الواحد -->
-      <div class="latte-inner rounded-2xl p-5 text-right space-y-3.5">
+      <div class="latte-inner rounded-2xl p-6 text-right space-y-4">
         <p class="text-sm sm:text-base text-warmBrown font-bold leading-relaxed">
           يمكن ما تكفي كل الكلمات عشان أوصف لك مكانتك عندي، لكن وجودك يخلّي أيامي أحلى، وضحكتك من الأشياء اللي أحبها كثير. أحب تفاصيلك، وسوالفك، وكل لحظة حلوة تجمعني فيك.
         </p>
@@ -420,8 +429,8 @@
           وأبيك تعرفين إنك غالية عليّ أكثر مما تتخيلين… وأتمنى أشوفك دايم مبسوطة. ♡
         </p>
 
-        <div class="pt-2.5 border-t border-[#E4CFC4] text-center">
-          <p class="text-xs sm:text-sm font-extrabold text-deepPink">
+        <div class="pt-3 border-t border-[#E4CFC4] text-center">
+          <p class="text-sm font-extrabold text-deepPink">
             صُنعت بكل حب، خصيصاً لكِ 🎀🤎
           </p>
         </div>
@@ -430,16 +439,13 @@
       <button
         id="hearts-burst-btn"
         type="button"
-        class="mt-4 px-5 py-2 rounded-full bg-[#FF9EB5]/30 text-warmBrown text-xs font-bold cursor-pointer active:scale-95 transition-transform"
+        class="mt-5 px-6 py-2.5 rounded-full bg-[#FF9EB5]/30 text-warmBrown text-sm font-bold cursor-pointer active:scale-95 transition-transform hover:bg-[#FF9EB5]/50"
       >
         انثري قلوب أكثر 🌸✨
       </button>
     </div>
   </div>
 
-  <!-- ===================================================================== -->
-  <!-- JavaScript: مشغل MP3 المحلي + البصمة                                 -->
-  <!-- ===================================================================== -->
   <script>
     const audio = document.getElementById('song-audio');
     audio.volume = 1;
@@ -447,10 +453,7 @@
     function playSongNow() {
       const playPromise = audio.play();
       if (playPromise !== undefined) {
-        playPromise.catch(() => {
-          // في حال فشل التشغيل لأي سبب (مثلاً الملف غير موجود)
-          console.log('تعذر تشغيل الأغنية');
-        });
+        playPromise.catch(() => {});
       }
       updateMusicButton(true);
     }
@@ -473,7 +476,6 @@
       }
     }
 
-    // تحديث الزر تلقائياً حسب حالة الصوت
     audio.addEventListener('play', () => updateMusicButton(true));
     audio.addEventListener('pause', () => updateMusicButton(false));
 
@@ -485,7 +487,6 @@
       }
     });
 
-    // منطق البصمة السريعة (1.4 ثانية)
     (function setupFingerprint() {
       const btn = document.getElementById('fp-btn');
       const ring = document.getElementById('fp-ring');
@@ -520,7 +521,6 @@
         if (e.type === 'touchstart') e.preventDefault();
         if (done) return;
         holding = true;
-        // تشغيل الأغنية في لحظة لمس البصمة
         playSongNow();
       }
 
@@ -531,7 +531,7 @@
       function unlock() {
         done = true;
         playSongNow();
-        dropHearts(16);
+        dropHearts(18);
 
         sFp.style.display = 'none';
         sWelcome.classList.remove('hidden');
@@ -541,7 +541,7 @@
           sWelcome.style.display = 'none';
           sMain.classList.remove('hidden');
           sMain.classList.add('flex');
-        }, 2000);
+        }, 2200);
       }
 
       btn.addEventListener('mousedown', onDown);
@@ -552,13 +552,12 @@
       requestAnimationFrame(loop);
     })();
 
-    // نافذة رسالة المفاجأة وتناثر القلوب
     const modal = document.getElementById('modal-surprise');
 
     document.getElementById('open-surprise-btn').addEventListener('click', () => {
       modal.classList.remove('hidden');
       modal.classList.add('flex');
-      dropHearts(22);
+      dropHearts(24);
     });
 
     document.getElementById('close-surprise-btn').addEventListener('click', () => {
@@ -567,20 +566,20 @@
     });
 
     document.getElementById('hearts-burst-btn').addEventListener('click', () => {
-      dropHearts(18);
+      dropHearts(20);
     });
 
     function dropHearts(count) {
-      const icons = ['🎀', '❤️', '🌸', '🤎', '✨'];
+      const icons = ['🎀', '❤️', '🌸', '🤎', '✨', '💕'];
       for (let i = 0; i < count; i++) {
         const span = document.createElement('span');
         span.className = 'mini-heart';
         span.textContent = icons[i % icons.length];
         span.style.left = `${Math.random() * 94}vw`;
-        span.style.fontSize = `${16 + Math.random() * 12}px`;
-        span.style.animationDuration = `${2.2 + Math.random() * 1.5}s`;
+        span.style.fontSize = `${18 + Math.random() * 14}px`;
+        span.style.animationDuration = `${2.4 + Math.random() * 1.6}s`;
         document.body.appendChild(span);
-        setTimeout(() => span.remove(), 3800);
+        setTimeout(() => span.remove(), 4000);
       }
     }
   </script>
