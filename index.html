@@ -26,7 +26,7 @@ body{min-height:100dvh;background:linear-gradient(180deg,var(--bg1),var(--bg2));
 h1,h2,h3{line-height:1.35}
 .chars{display:flex;align-items:flex-end;justify-content:center;gap:.25rem}
 .chars{position:relative}.chars::after{content:'';position:absolute;left:10%;right:10%;bottom:-6px;height:20px;background:radial-gradient(ellipse,rgba(229,107,140,.28),transparent 70%)}
-.ch{height:clamp(96px,28vw,128px);width:auto;overflow:visible;filter:drop-shadow(0 6px 8px rgba(93,64,55,.14))}.ch.m2{height:clamp(46px,13vw,60px);margin-bottom:34px;animation-delay:-1.2s}.ch.cat2{height:96px}
+.ch{height:clamp(96px,28vw,128px);width:auto;overflow:visible}.ch.m2{height:clamp(46px,13vw,60px);margin-bottom:34px;animation-delay:-1.2s}.ch.cat2{height:96px}
 .eye{transform-box:fill-box;transform-origin:center;animation:blink 4.6s infinite}@keyframes blink{0%,93%,100%{transform:scaleY(1)}96%{transform:scaleY(.1)}}
 .sp{position:absolute;font-style:normal;color:#F6BD60;font-size:14px;animation:tw 2.4s ease-in-out infinite}@keyframes tw{50%{opacity:.2;transform:scale(.6) rotate(25deg)}}
 .bob{animation:bob 3.4s ease-in-out infinite}
@@ -70,7 +70,7 @@ main{position:relative;z-index:2;min-height:100dvh;max-width:28rem;margin:auto;p
 .cta:active,.btn-s:active,#x:active{transform:scale(.96)}
 footer{text-align:center;color:var(--soft);font-size:.78rem}
 /* modal */
-#modal,.modalx{position:fixed;inset:0;z-index:50;display:flex;align-items:center;justify-content:center;padding:max(16px,env(safe-area-inset-top)) 16px max(16px,env(safe-area-inset-bottom));background:rgba(40,20,28,.35);-webkit-backdrop-filter:blur(4px);backdrop-filter:blur(4px)}
+#modal,.modalx{position:fixed;inset:0;z-index:50;display:flex;align-items:center;justify-content:center;padding:max(16px,env(safe-area-inset-top)) 16px max(16px,env(safe-area-inset-bottom));background:rgba(40,20,28,.55)}
 #modal .card,.modalx .card{max-width:28rem;max-height:90dvh;overflow-y:auto;overscroll-behavior:contain}
 #modal h3,.modalx h3{font-size:clamp(1.8rem,9vw,2.4rem);color:var(--deep);margin-block:.5rem 1.1rem}
 
@@ -117,6 +117,7 @@ header.pl{background:var(--card);border:2.5px solid var(--line);border-radius:1.
 .eb p{animation:pop .8s both}
 .sigb{font-family:'Aref Ruqaa','Cairo',serif;font-size:clamp(2.4rem,11vw,3rem);color:var(--deep);line-height:1.3;transform:rotate(-4deg);margin-top:1rem;animation:pop 1s both}
 .sigl{width:8rem;height:3px;border-radius:9px;margin:0 auto;background:linear-gradient(90deg,transparent,var(--pink),transparent)}
+.mo #bg i{display:none}.mo .cta::after,.mo .eye,.mo .sp,.mo .bob,.mo .cd{animation:none!important}
 :focus-visible{outline:3px solid var(--deep);outline-offset:3px}
 @media(min-width:900px){body{font-size:17px}.card{max-width:27rem}main{max-width:30rem}}
 @media(max-height:560px){.chars .ch{height:64px}.sub{margin-bottom:.6rem}.chip{margin-bottom:.5rem}}
@@ -211,6 +212,8 @@ header.pl{background:var(--card);border:2.5px solid var(--line);border-radius:1.
 
 <script>
 (()=>{
+function mo(){document.body.classList.toggle('mo',!!document.querySelector('.modalx:not(.hidden),#modal:not(.hidden)'))}
+const LOW=(navigator.hardwareConcurrency||4)<=4||innerWidth<500;
 const $=id=>document.getElementById(id),rm=matchMedia('(prefers-reduced-motion:reduce)').matches;
 const ICONS=['🎀','❤️','🌸','🤎','✨','💕','🩷'];
 // خلفية خفيفة
@@ -238,6 +241,7 @@ let wasPlaying=false;
 document.addEventListener('visibilitychange',()=>{if(document.hidden){wasPlaying=!au.paused;au.pause();bg.style.display='none'}else{bg.style.display='';if(wasPlaying)au.play().catch(()=>{})}});
 // قلوب
 function hearts(n,x,y){
+  if(LOW)n=Math.ceil(n*.6);
   const W=innerWidth,H=innerHeight;
   for(let i=0;i<n;i++){
     const s=document.createElement('span');s.className='fx';s.textContent=ICONS[i%7];
@@ -286,14 +290,14 @@ function type(){
   (function step(){
     if(id!==typing)return;
     if(i>=txt.length){render();return}
-    p.textContent=txt.slice(0,++i).replace(/\n/g,' ');
-    setTimeout(step,txt[i-1]==='…'?250:22);
+    i+=2;p.textContent=txt.slice(0,i).replace(/\n/g,' ');
+    setTimeout(step,30);
   })();
 }
 // النافذة
 const modal=$('modal');let lastFocus;
-function open(){lastFocus=document.activeElement;modal.classList.remove('hidden');document.body.style.overflow='hidden';hearts(20);type();$('x').focus()}
-function close(){typing++;modal.classList.add('hidden');document.body.style.overflow='';lastFocus&&lastFocus.focus()}
+function open(){lastFocus=document.activeElement;modal.classList.remove('hidden');document.body.style.overflow='hidden';mo();hearts(20);type();$('x').focus()}
+function close(){typing++;modal.classList.add('hidden');document.body.style.overflow='';mo();lastFocus&&lastFocus.focus()}
 $('open').onclick=open;$('x').onclick=close;
 modal.addEventListener('click',e=>{if(e.target===modal)close()});
 addEventListener('keydown',e=>{if(e.key==='Escape'&&!modal.classList.contains('hidden'))close()});
@@ -321,6 +325,7 @@ function tickCD(){
 setInterval(tickCD,1000);
 // كونفيتي
 function confetti(n=60){
+  if(LOW)n=Math.ceil(n*.5);
   const W=innerWidth,C=['#FF9EB5','#E56B8C','#F6BD60','#FFD1DC','#8D6E63','#fff'];
   for(let i=0;i<n;i++){
     const e=document.createElement('i');e.className='confetti';e.style.background=C[i%6];document.body.appendChild(e);
@@ -346,7 +351,7 @@ const lfB=lf.querySelectorAll('b');
 setInterval(()=>{if(bm.classList.contains('hidden')||document.hidden)return;life().forEach(([v],i)=>{if(lfB[i].textContent!=v)lfB[i].textContent=v})},1000);
 let out=0;
 function openBD(){
-  lastFocus=document.activeElement;bm.classList.remove('hidden');document.body.style.overflow='hidden';out=0;life().forEach(([v],i)=>lfB[i].textContent=v);
+  lastFocus=document.activeElement;bm.classList.remove('hidden');document.body.style.overflow='hidden';mo();out=0;life().forEach(([v],i)=>lfB[i].textContent=v);
   $('wish').style.display='none';$('hint').style.display='';
   $('age').textContent=isBD()?`كل عام وأنتِ بخير يا صاحبة الـ ${ageNow()} 🎉`:`كل عام وأنتِ بخير، وبكرا تكملين ${nextBD().getFullYear()-BIRTH_YEAR} 🎉`;
   const can=$('can');can.innerHTML='';
@@ -357,7 +362,7 @@ function finish(){
   const w=$('wish');w.style.display='';w.innerHTML=WISHES.map(m=>`<p>${m}</p>`).join('')+`<p class="sig">${SIG}</p>`;
   setTimeout(()=>confetti(40),700);
 }
-function closeBD(){bm.classList.add('hidden');document.body.style.overflow='';lastFocus&&lastFocus.focus()}
+function closeBD(){bm.classList.add('hidden');document.body.style.overflow='';mo();lastFocus&&lastFocus.focus()}
 $('bdbtn').onclick=openBD;$('bx').onclick=closeBD;
 bm.addEventListener('click',e=>{if(e.target===bm)closeBD()});
 addEventListener('keydown',e=>{if(e.key==='Escape'&&!bm.classList.contains('hidden'))closeBD()});
@@ -369,12 +374,12 @@ $('rn').onclick=nextR;nextR();
 // ===== النهاية =====
 const em=$('em'),EL=['إذا وصلتي لهنا يعني شفتي كل شي، وأتمنى إنه عجبك ولو بشي بسيط 🎀','هالصفحة ما تكفي توصف شعوري، بس حبيت أسوي لك شي يشبهك: حلو وهادي ويفرّح 🌸','شكراً إنك موجودة في حياتي، وشكراً على كل لحظة حلوة، وعلى ضحكتك اللي تغيّر يومي 🤎','الله يحفظك لي، ويفرّحك دايم، ويخلي أيامك كلها أحلى من اللي قبلها ✨','وكل سنة وأنتِ أغلى وأحلى 🩷'];
 function openEnd(){
-  lastFocus=document.activeElement;em.classList.remove('hidden');document.body.style.overflow='hidden';
+  lastFocus=document.activeElement;em.classList.remove('hidden');document.body.style.overflow='hidden';mo();
   $('eb').innerHTML=EL.map((m,i)=>`<p style="animation-delay:${i*(rm?0:.9)+.3}s">${m}</p>`).join('');
   $('sg').style.animationDelay=(rm?0:EL.length*.9+.5)+'s';
   hearts(16);setTimeout(()=>confetti(40),400);$('ex').focus();
 }
-function closeEnd(){em.classList.add('hidden');document.body.style.overflow='';lastFocus&&lastFocus.focus()}
+function closeEnd(){em.classList.add('hidden');document.body.style.overflow='';mo();lastFocus&&lastFocus.focus()}
 $('endb').onclick=openEnd;$('ex').onclick=closeEnd;
 em.addEventListener('click',e=>{if(e.target===em)closeEnd()});
 addEventListener('keydown',e=>{if(e.key==='Escape'&&!em.classList.contains('hidden'))closeEnd()});
