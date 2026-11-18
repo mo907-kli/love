@@ -7,7 +7,7 @@
 <title>i love you Athare 🎀</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Cairo:wght@500;700;800&family=Quicksand:wght@600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Cairo:wght@500;700;800&family=Quicksand:wght@600;700&family=Aref+Ruqaa:wght@700&display=swap" rel="stylesheet">
 <style>
 :root{--pink:#FF9EB5;--deep:#E56B8C;--line:#F4B8C8;--brown:#5D4037;--soft:#8D6E63;--latte:#F5EBE6;--latte2:#E4CFC4;--bg1:#FFF6F8;--bg2:#FFF0F4;--card:rgba(255,253,253,.94);--shadow:0 8px 28px rgba(93,64,55,.1)}
 @media(prefers-color-scheme:dark){:root{--bg1:#2B1F22;--bg2:#241A1D;--card:rgba(52,38,42,.94);--brown:#FBE9E7;--soft:#D7B8B0;--latte:#43322F;--latte2:#5A4642;--line:#8A4F63;--shadow:0 8px 28px rgba(0,0,0,.35)}}
@@ -49,8 +49,8 @@ h1,h2,h3{line-height:1.35}
 .sub{color:var(--soft);font-size:.88rem;margin-bottom:1.25rem}
 /* welcome */
 #welcome{flex-direction:column;text-align:center}
-#welcome h2{font-size:clamp(2.6rem,13vw,4rem);color:var(--deep);font-weight:700}
-#welcome h2 span{display:inline-block;opacity:0;animation:pop .6s forwards}
+#welcome h2{direction:ltr;unicode-bidi:isolate;font-size:clamp(2.6rem,13vw,4rem);color:var(--deep);font-weight:700}
+#welcome h2 span{display:inline-block;animation:pop .6s both}
 /* main */
 main{position:relative;z-index:2;min-height:100dvh;max-width:28rem;margin:auto;padding:max(16px,env(safe-area-inset-top)) 18px max(16px,env(safe-area-inset-bottom));display:flex;flex-direction:column;gap:1.25rem}
 .trk{display:flex;align-items:center;gap:.7rem;min-width:0}
@@ -111,6 +111,12 @@ header.pl{background:var(--card);border:2.5px solid var(--line);border-radius:1.
 .rg::-moz-range-progress{height:6px;border-radius:9px;background:var(--deep)}
 .rg::-webkit-slider-thumb{-webkit-appearance:none;width:18px;height:18px;margin-top:-6px;border-radius:50%;background:#fff;border:3px solid var(--deep);box-shadow:0 1px 4px rgba(0,0,0,.2)}
 .rg::-moz-range-thumb{width:12px;height:12px;border-radius:50%;background:#fff;border:3px solid var(--deep)}
+.cta.end{background:var(--card);color:var(--deep);border:2.5px solid var(--line);box-shadow:var(--shadow);margin-top:.2rem}
+.from{display:inline-block;font-weight:800;color:var(--deep);background:rgba(255,158,181,.2);padding:.3rem 1.1rem;border-radius:99px;margin:.4rem 0 1rem}
+.eb{display:grid;gap:.9rem;text-align:right;font-weight:700;line-height:1.95;font-size:.95rem;-webkit-user-select:text;user-select:text}
+.eb p{animation:pop .8s both}
+.sigb{font-family:'Aref Ruqaa','Cairo',serif;font-size:clamp(2.4rem,11vw,3rem);color:var(--deep);line-height:1.3;transform:rotate(-4deg);margin-top:1rem;animation:pop 1s both}
+.sigl{width:8rem;height:3px;border-radius:9px;margin:0 auto;background:linear-gradient(90deg,transparent,var(--pink),transparent)}
 :focus-visible{outline:3px solid var(--deep);outline-offset:3px}
 @media(min-width:900px){body{font-size:17px}.card{max-width:27rem}main{max-width:30rem}}
 @media(max-height:560px){.chars .ch{height:64px}.sub{margin-bottom:.6rem}.chip{margin-bottom:.5rem}}
@@ -146,7 +152,7 @@ header.pl{background:var(--card);border:2.5px solid var(--line);border-radius:1.
   </div>
 </section>
 
-<section id="welcome" class="screen hidden"><div style="font-size:3.5rem;margin-bottom:.5rem">🎀🤎🌸</div><h2 class="en" id="wt" aria-label="i love you"></h2><p style="font-weight:800;margin-top:.5rem">أهلاً بكِ يا Athare ✨</p></section>
+<section id="welcome" class="screen hidden"><div style="font-size:3.5rem;margin-bottom:.5rem">🎀🤎🌸</div><h2 class="en" id="wt" dir="ltr" aria-label="i love you"></h2><p style="font-weight:800;margin-top:.5rem">أهلاً بكِ يا Athare ✨</p></section>
 
 <main id="home" class="hidden">
   <header class="pl">
@@ -163,6 +169,7 @@ header.pl{background:var(--card);border:2.5px solid var(--line);border-radius:1.
   </section>
   <section class="card sec rv"><h4>⏳ من يوم انولدتي لين هاللحظة</h4><div class="cd lf" id="cd"><div><b>0</b><small>سنة</small></div><div><b>0</b><small>شهر</small></div><div><b>0</b><small>يوم</small></div><div><b>0</b><small>ساعة</small></div><div><b>0</b><small>دقيقة</small></div><div><b>0</b><small>ثانية</small></div></div><p id="cdn"></p><button id="bdbtn" type="button" class="cta" style="margin-top:1rem">🎁 افتحي هديتكِ</button></section>
   <section class="card sec rv"><h4>🤎 أسباب أحبك</h4><p class="rs" id="rs"></p><button id="rn" type="button" class="more" style="margin-top:.4rem">سبب ثاني 🎀</button></section>
+  <button id="endb" type="button" class="cta end">النهاية 🤍</button>
   <footer>صُنعت بكل حب، خصيصاً لكِ 🤎🌸 · المسي أي مكان تطلع قلوب</footer>
 </main>
 
@@ -188,6 +195,17 @@ header.pl{background:var(--card);border:2.5px solid var(--line);border-radius:1.
     <p class="sub" id="hint" style="margin:.4rem 0 0">طفّي الشموع وتمنّي أمنية 🤍</p>
     <div class="can" id="can"></div>
     <div id="wish" class="note" style="display:none"></div>
+  </div>
+</div>
+
+<div id="em" class="hidden modalx" role="dialog" aria-modal="true" aria-label="النهاية">
+  <div class="card pop">
+    <button id="ex" type="button" aria-label="إغلاق" style="position:absolute;top:14px;left:14px;width:40px;height:40px;border-radius:50%;border:1.5px solid var(--latte2);background:var(--latte);color:var(--brown);font-size:1rem;font-weight:700;cursor:pointer">✕</button>
+    <div style="font-size:2.2rem">🎀🤎🌸</div>
+    <div class="from">من محمد 🤎</div>
+    <div class="eb" id="eb"></div>
+    <div class="sigb" id="sg">محمد</div><div class="sigl"></div>
+    <p style="margin-top:.6rem;font-size:.8rem;color:var(--soft)">مع حبي 🤎</p>
   </div>
 </div>
 
@@ -348,6 +366,18 @@ const RS=['لأنك تفهمينني من نظرة 🤎','لأنك تخلين أ
 let ri=-1;const rs=$('rs');
 function nextR(){rs.style.opacity=0;setTimeout(()=>{ri=(ri+1)%RS.length;rs.textContent=RS[ri];rs.style.opacity=1},rm?0:220)}
 $('rn').onclick=nextR;nextR();
+// ===== النهاية =====
+const em=$('em'),EL=['إذا وصلتي لهنا يعني شفتي كل شي، وأتمنى إنه عجبك ولو بشي بسيط 🎀','هالصفحة ما تكفي توصف شعوري، بس حبيت أسوي لك شي يشبهك: حلو وهادي ويفرّح 🌸','شكراً إنك موجودة في حياتي، وشكراً على كل لحظة حلوة، وعلى ضحكتك اللي تغيّر يومي 🤎','الله يحفظك لي، ويفرّحك دايم، ويخلي أيامك كلها أحلى من اللي قبلها ✨','وكل سنة وأنتِ أغلى وأحلى 🩷'];
+function openEnd(){
+  lastFocus=document.activeElement;em.classList.remove('hidden');document.body.style.overflow='hidden';
+  $('eb').innerHTML=EL.map((m,i)=>`<p style="animation-delay:${i*(rm?0:.9)+.3}s">${m}</p>`).join('');
+  $('sg').style.animationDelay=(rm?0:EL.length*.9+.5)+'s';
+  hearts(16);setTimeout(()=>confetti(40),400);$('ex').focus();
+}
+function closeEnd(){em.classList.add('hidden');document.body.style.overflow='';lastFocus&&lastFocus.focus()}
+$('endb').onclick=openEnd;$('ex').onclick=closeEnd;
+em.addEventListener('click',e=>{if(e.target===em)closeEnd()});
+addEventListener('keydown',e=>{if(e.key==='Escape'&&!em.classList.contains('hidden'))closeEnd()});
 // لو اليوم 8/8 (أو جربي بإضافة #bd للرابط) تفتح الهدية تلقائياً
 const _un=unlock;
 new MutationObserver((_,o)=>{if(!$('home').classList.contains('hidden')){o.disconnect();tickCD();if(isBD()||location.hash==='#bd')setTimeout(()=>{openBD();confetti(60)},500)}}).observe($('home'),{attributes:true,attributeFilter:['class']});
